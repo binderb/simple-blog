@@ -1,0 +1,30 @@
+{
+  "name": "simple-blog",
+  "version": "1.0.0",
+  "description": "Full-stack web application that employs Node.js/Express, Sequelize, and Handlebars to render and manage a simple web blog. Adheres strongly to the MVC framework.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/binderb/simple-blog.git"
+  },
+  "author": "Ben Binder",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/binderb/simple-blog/issues"
+  },
+  "homepage": "https://github.com/binderb/simple-blog#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "connect-session-sequelize": "^7.1.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-handlebars": "^6.0.6",
+    "express-session": "^1.17.3",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.26.0"
+  }
+}
