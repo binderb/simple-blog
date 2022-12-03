@@ -1,0 +1,12 @@
+[
+  {
+    "title" : "My first post!",
+    "content" : "This is my first post on the blog!",
+    "user_id" : 1
+  },
+  {
+    "title" : "Here are some fun facts",
+    "content" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sed id semper risus in hendrerit gravida. Interdum consectetur libero id faucibus nisl tincidunt eget. Et leo duis ut diam quam nulla. Auctor elit sed vulputate mi sit amet mauris commodo. Diam maecenas sed enim ut sem viverra. Quam id leo in vitae turpis massa. Amet mauris commodo quis imperdiet massa tincidunt. Mi bibendum neque egestas congue quisque egestas diam. Egestas congue quisque egestas diam in arcu cursus. Adipiscing at in tellus integer feugiat scelerisque varius morbi. Sagittis purus sit amet volutpat consequat mauris nunc. Aliquam malesuada bibendum arcu vitae elementum. Eu nisl nunc mi ipsum faucibus vitae aliquet nec ullamcorper. Facilisis gravida neque convallis a cras. Aenean et tortor at risus viverra adipiscing at in tellus. Cursus risus at ultrices mi tempus imperdiet nulla. Cursus in hac habitasse platea dictumst quisque. Est ante in nibh mauris cursus mattis molestie a iaculis. Proin libero nunc consequat interdum varius.",
+    "user_id" : 3
+  }
+]
