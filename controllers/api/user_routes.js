@@ -1,14 +1,14 @@
 const router = require('express').Router();
-const { application } = require('express');
 const { User } = require('../../models');
+const { withAuthAPI } = require('../../utils/auth');
 
-// Add new user
+// Create 1 user
 router.post('/', async (req, res) => {
   try {
     const new_user_data = await User.create(req.body);
     req.session.save(() => {
       req.session.logged_in = true;
-      res.status(201).json({data: new_user_data, cookie: req.session.cookie});
+      res.status(201).json(new_user_data);
     });
 
   } catch (err) {
@@ -49,14 +49,10 @@ router.post('/login', async (req, res) => {
 });
 
 // Log out user
-router.post('/logout', async (req, res) => {
-  if (req.session.logged_in) {
-    req.session.destroy(() => {
-      res.status(204).end();
-    });
-  } else {
-    res.status(404).end();
-  }
+router.post('/logout', withAuthAPI, async (req, res) => {
+  req.session.destroy(() => {
+    res.status(204).end();
+  });
 });
 
 

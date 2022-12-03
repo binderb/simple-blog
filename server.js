@@ -16,7 +16,9 @@ app.use(express.urlencoded({extended: true}));
 const sess = {
   secret: process.env.SESSION_SECRET,
   cookie: {
-    maxAge: 24 * 60 * 60 * 1000 // expires after 24 hours
+    maxAge: 24 * 60 * 60 * 1000, // expires after 24 hours
+    httpOnly: true,
+    sameSite: 'strict'
   },
   resave: false,
   saveUninitialized: true,
@@ -27,10 +29,18 @@ const sess = {
 app.use(session(sess));
 // Enable modular routes
 app.use(routes);
-
-// Provide catch-all route
+// Provide catch-all routes
 app.get('*', (req,res) => {
-  res.status(404).json({message:"Page Not Found!"});
+  res.status(404).json({message:"Resource Not Found."});
+});
+app.post('*', (req,res) => {
+  res.status(405).json({message:"Route not found, or HTTP method not allowed."});
+});
+app.put('*', (req,res) => {
+  res.status(405).json({message:"Route not found, or HTTP method not allowed."});
+});
+app.delete('*', (req,res) => {
+  res.status(405).json({message:"Route not found, or HTTP method not allowed."});
 });
 
 async function init () {

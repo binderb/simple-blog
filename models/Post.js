@@ -23,8 +23,12 @@ Post.init(
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW
     },
+    updated: {
+      type: DataTypes.DATE
+    },
     user_id: {
       type: DataTypes.INTEGER,
+      allowNull: false,
       references: {
         model: 'user',
         key: 'id'
