@@ -17,7 +17,7 @@ app.get('*', (req,res) => {
 });
 
 async function init () {
-  await sequelize.sync({force: false});
+  await sequelize.sync({alter: true});
   app.listen(PORT, () => console.log(`Listening on port ${PORT}.`));
 }
 

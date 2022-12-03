@@ -15,6 +15,10 @@ Comment.init(
       type: DataTypes.TEXT,
       allowNull: false
     },
+    created: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW
+    },
     user_id: {
       type: DataTypes.INTEGER,
       references: {
@@ -32,7 +36,7 @@ Comment.init(
   },
   {
     sequelize,
-    timestamps: true,
+    timestamps: false,
     freezeTableName: true,
     underscored: true,
     modelName: 'comment'
