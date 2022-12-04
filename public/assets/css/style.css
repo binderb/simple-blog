@@ -1,0 +1,18 @@
+:root {
+
+  --button-glass: #FFFFFF33;
+  --input-glass: #FFFFFF55;
+  
+  --biosim-blue: #0b4f8c;
+  --biosim-blue-transparent: #0b4f8c22;
+  --biosim-blue-highlight: #4f8fcf;
+  --biosim-blue-dark: #092d6a;
+  --biosim-blue-light: #e4f1fd;
+  --biosim-grey: #838587;
+  --biosim-grey-glass: #83858755;
+  --biosim-grey-light: #e3e6e9;
+}
+
+.small-text {
+  font-size: 14px;
+}

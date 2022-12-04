@@ -1,0 +1,15 @@
+<div class="container-fluid p-2">
+  <div class="row p-2 justify-content-between align-items-center bg-dark text-white">
+    <div class="col-6 fs-5 fw-bold">
+      {{ title }}
+    </div>
+    <div class="col-6 d-flex justify-content-end small-text text-end">
+      posted by {{ user.username }} on {{ format_datetime created }}
+    </div>
+  </div>
+  <div class="row p-2 bg-light border border-dark border-3 ">
+    <p class="m-0">
+      {{ content }}
+    </p>
+  </div>
+</div>
