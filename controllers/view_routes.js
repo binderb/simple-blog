@@ -9,6 +9,8 @@ router.get('/', async (req, res) => {
   res.render('homepage', {
     posts,
     logged_in: req.session.logged_in,
+    user_id: req.session.user_id,
+    username: req.session.username,
     active_homepage: true
   });
 });
@@ -29,7 +31,6 @@ router.get('/signup', async (req, res) => {
     return;
   }
   res.render('login-signup', {
-    
     active_signup: true
   });
 });
