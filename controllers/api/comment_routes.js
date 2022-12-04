@@ -1,14 +1,31 @@
 const router = require('express').Router();
-const { Comment } = require('../../models');
+const { DataTypes } = require('sequelize');
+const { Comment, Post } = require('../../models');
 const { withAuthAPI } = require('../../utils/auth');
 
 // Create 1 comment
 router.post('/', withAuthAPI, async (req, res) => {
   try {
-    const new_comment_data = await Comment.create(req.body);
+    if (!req.body.content) {
+      res.status(403).json({message: 'Your comment cannot be empty!'});
+      return;
+    } else if (!req.body.post_id) {
+      res.status(400).json({message: 'No post id specified.'});
+      return;
+    }
+    const post_data = await Post.findByPk(req.body.post_id);
+    if (!post_data) {
+      res.status(404).json({message: 'Post does not exist.'});
+      return;
+    }
+    const new_comment_body = {
+      ...req.body,
+      user_id: req.session.user_id
+    }
+    const new_comment_data = await Comment.create(new_comment_body);
     res.status(201).json(new_comment_data);
   } catch (err) {
-    res.status(500).json({message: 'Internal Server Error'});
+    res.status(500).json({message: `Internal Server Error: ${err.name}`});
   }
 });
 

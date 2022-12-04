@@ -57,7 +57,7 @@ app.delete('*', (req,res) => {
 
 // Require sequelize model sync before listening
 async function init () {
-  await sequelize.sync({alter: true});
+  await sequelize.sync({force: false});
   app.listen(PORT, () => console.log(`Listening on port ${PORT}.`));
 }
 

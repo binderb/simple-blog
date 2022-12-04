@@ -6,6 +6,15 @@ const withAuthAPI = (req, res, next) => {
   }
 }
 
+const withAuthView = (req, res, next) => {
+  if (!req.session.logged_in) {
+    res.redirect('./login');
+  } else {
+    next();
+  }
+}
+
 module.exports = {
-  withAuthAPI
+  withAuthAPI,
+  withAuthView
 };
