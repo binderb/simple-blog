@@ -13,4 +13,25 @@ router.get('/', async (req, res) => {
   });
 });
 
+router.get('/login', async (req, res) => {
+  if (req.session.logged_in) {
+    res.redirect('/');
+    return;
+  }
+  res.render('login-signup',{
+    active_login: true
+  });
+});
+
+router.get('/signup', async (req, res) => {
+  if (req.session.logged_in) {
+    res.redirect('/');
+    return;
+  }
+  res.render('login-signup', {
+    
+    active_signup: true
+  });
+});
+
 module.exports = router;

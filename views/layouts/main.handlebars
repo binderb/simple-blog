@@ -29,9 +29,9 @@
             </li>
             <li class="nav-item">
               {{#if logged_in}}
-                <a class="nav-link" href="#">Logout</a>
+                <a id="logout" class="nav-link" href="">Logout</a>
               {{else}}
-                <a class="nav-link" href="#">Login</a>
+                <a class="nav-link {{#if active_login}}active{{/if}}" href="./login">Login</a>
               {{/if}}
             </li>
           </ul>
@@ -42,5 +42,8 @@
   <main>
     {{{ body }}}
   </main>
+  {{#if logged_in}}
+    <script src="./assets/js/logout.js"></script>
+  {{/if}}
 </body>
 </html>

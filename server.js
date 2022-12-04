@@ -39,7 +39,9 @@ app.set('view engine','handlebars');
 app.use(routes);
 // Provide catch-all routes
 app.get('*', (req,res) => {
-  res.status(404).json({message:"Resource Not Found."});
+  res.status(404).render('404',{
+    logged_in: req.session.logged_in
+  });
 });
 app.post('*', (req,res) => {
   res.status(405).json({message:"Route not found, or HTTP method not allowed."});
