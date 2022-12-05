@@ -14,5 +14,5 @@ const delete_comment = async (e) => {
   }
 }
 
-const deletes = document.querySelector('.delete')
-if (deletes) deletes.addEventListener('click',delete_comment);
+const deletes = document.querySelectorAll('.delete');
+deletes.forEach((el,i) => el.addEventListener('click',delete_comment));

@@ -39,18 +39,17 @@
     </div>
     {{#each comments as |comment|}}
     <div class="row bg-secondary m-2 p-3">
-      <p class="mb-0">
+      <p class="mb-0 comment-content">
         {{comment.content}}
       </p>
-      <div class="col-12 small-text">
-          &mdash; <b>{{comment.user.username}}</b> commented on {{format_datetime comment.created}}
+      <div class="col-12 small-text comment-signature">
+          &mdash; <b>{{comment.user.username}}</b> commented on {{format_datetime comment.created}} {{#if comment.updated}}(edited){{/if}}
+
       </div>
       {{#if ../logged_in}}
       {{#if (is_equal comment.user.id ../user_id) }}
       <div class="col-12 small-text">
-          {{!-- <a href="" class="px-2 fa-solid fa-pen-to-square link-dark text-decoration-none"></a>
-          <a href="" class="px-2 fa-solid fa-trash link-dark text-decoration-none"></a> --}}
-          <a href="" class="pe-1 link-dark">edit</a>
+          <a href="" class="pe-1 link-dark edit" data-comment-id="{{comment.id}}">edit</a>
           <a href="" class="link-dark delete" data-comment-id="{{comment.id}}">delete</a>
       </div>
       {{/if}}
@@ -62,4 +61,5 @@
 {{#if logged_in}}
 <script src="/assets/js/post-comment.js"></script>
 <script src="/assets/js/delete-comment.js"></script>
+<script src="/assets/js/edit-comment.js"></script>
 {{/if}}

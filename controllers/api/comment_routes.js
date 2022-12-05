@@ -32,16 +32,28 @@ router.post('/', withAuthAPI, async (req, res) => {
 // Update 1 comment
 router.put('/:id', withAuthAPI, async (req, res) => {
   try {
-    const update_result = await Comment.update(req.body, {
-      where: {id: req.params.id}
+    // Make sure user is the author of the comment
+    const comment_data = await Comment.findByPk(req.params.id, {
+      include: [{model: User}]
     });
-
-    if (update_result[0] == 0) {
+    if (!comment_data) {
       res.status(404).json({message: 'Comment with given ID not found!'});
       return;
     }
+    const comment = comment_data.get({plain:true});
+    if (req.session.user_id != comment.user.id) {
+      res.status(401).json({message: 'Your user id does not match the author of the comment you are trying to edit.'});
+      return;
+    }
+    const updated_comment_body = {
+      ...req.body,
+      updated: new Date()
+    }
+    await Comment.update(updated_comment_body, {
+      where: {id: req.params.id}
+    });
 
-    res.status(200).json({message: 'Comment updated successfully'});
+    res.status(200).json({message: 'Comment updated successfully.'});
   
   } catch (err) {
     res.status(500).json({message: 'Internal Server Error'});
@@ -60,18 +72,16 @@ router.delete('/:id', withAuthAPI, async (req, res) => {
       return;
     }
     const comment = comment_data.get({plain:true});
-    console.log(comment.user.id);
-    console.log(req.session.user_id);
     if (req.session.user_id != comment.user.id) {
       res.status(401).json({message: 'Your user id does not match the author of the comment you are trying to delete.'});
       return;
     }
 
-    const delete_result = await Comment.destroy({
+    await Comment.destroy({
       where: {id: req.params.id}
     });
 
-    res.status(200).json({message: 'Comment deleted successfully'});
+    res.status(200).json({message: 'Comment deleted successfully.'});
   
   } catch (err) {
     res.status(500).json({message: 'Internal Server Error'});
