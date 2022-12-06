@@ -1,15 +1,33 @@
 <div class="container-fluid p-2">
-  <div class="row p-2 justify-content-between align-items-center bg-dark text-white">
-    <a href="/post/{{ id }}" class="col-6 fs-5 link-light fw-bold text-decoration-none">
+  <div class="row p-2 justify-content-between align-items-center bg-dark text-white rounded-top">
+    <div class="col-12 col-sm-6 pt-2 pb-1 py-sm-0 d-flex align-items-center">
+    <a href="/post/{{ id }}" class="fs-5 link-light fw-bold text-decoration-none">
       {{ title }}
     </a>
-    <div class="col-6 d-flex justify-content-end small-text text-end">
+    </div>
+    <div class="col-12 col-sm-6 pt-1 pb-2 py-sm-0 small-text text-start text-sm-end">
+      {{#if post_all}}
       posted by&nbsp;<b>{{ user.username }}</b>&nbsp;on {{ format_datetime created }}
+      {{else}}
+      posted on {{ format_datetime created }}
+      {{/if}}
     </div>
   </div>
-  <div class="row p-2 bg-light border border-dark border-3">
+  {{#if post_all}}
+  <div class="row p-2 bg-light rounded-bottom border-dark border-start border-end border-bottom border-2">
+  {{else}}
+  <div class="row p-2 bg-light border-dark border-start border-end border-bottom border-2">
+  {{/if}}
     <p class="m-0 text-truncate">
       {{ content }}
     </p>
   </div>
+  {{#unless post_all}}
+  <div class="row p-2 bg-light rounded-bottom border-dark border-start border-end border-bottom border-2">
+    <div class="d-flex justify-content-start">
+    <a class="me-1 btn btn-sm btn-secondary"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</a>
+    <a class="ms-1 btn btn-sm btn-secondary"><i class="fa-solid fa-xmark"></i>&nbsp;Delete</a>
+    </div>
+  </div>
+  {{/unless}}
 </div>

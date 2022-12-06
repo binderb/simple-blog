@@ -8,6 +8,7 @@ router.get('/', async (req, res) => {
     order: [['created','DESC']]
   });
   const posts = post_data.map(e => e.get({plain: true}));
+  console.log(req.session);
   res.render('homepage', {
     posts,
     logged_in: req.session.logged_in,
@@ -49,14 +50,24 @@ router.get('/post/:id', async (req, res) => {
   }
 });
 
-// router.get('/dashboard', withAuthView, async (req, res) => {
-//   res.render('dashboard', {
-//     logged_in: req.session.logged_in,
-//     user_id: req.session.user_id,
-//     username: req.session.username,
-//     active_dashboard: true
-//   });
-// });
+router.get('/dashboard', withAuthView, async (req, res) => {
+  const posts_data = await Post.findAll({
+    where: {
+      user_id: req.session.user_id
+    },
+    order: [
+      ['created', 'DESC']
+    ]
+  });
+  const posts = posts_data.map(e => e.get({plain:true}));
+  res.render('dashboard', {
+    posts,
+    logged_in: req.session.logged_in,
+    user_id: req.session.user_id,
+    username: req.session.username,
+    active_dashboard: true
+  });
+});
 
 router.get('/login', async (req, res) => {
   if (req.session.logged_in) {

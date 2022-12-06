@@ -1,0 +1,28 @@
+<div class="container-fluid p-2">
+  <div class="row px-2 my-4 justify-content-center">
+    <h2 class="col-12 text-dark fw-bold">
+      Dashboard for {{username}}
+    </h2>
+  </div>
+</div>
+<div class="container-fluid p-4 pb-2 bg-light-grey">
+  <div class="row justify-content-center py-2">
+    <div class="col-12 d-flex justify-content-between align-items-center">
+      <h4 class="fw-bold d-inline-block">
+          My Posts
+      </h4>
+      <div>
+        <button class="btn btn-secondary m-0" href=""><i class="fa-solid fa-plus"></i>&nbsp;New Post</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid px-4 pb-4 bg-light-grey">
+  {{#if posts}}
+  {{#each posts as |post|}}
+    {{>post post_all=false}}
+  {{/each}}
+  {{else}}
+  No posts yet.
+  {{/if}}
+</div>
