@@ -12,12 +12,12 @@
           My Posts
       </h4>
       <div>
-        <button class="btn btn-secondary m-0" href=""><i class="fa-solid fa-plus"></i>&nbsp;New Post</button>
+        <button id="new_post" class="btn btn-secondary m-0" href=""><i class="fa-solid fa-plus"></i>&nbsp;New Post</button>
       </div>
     </div>
   </div>
 </div>
-<div class="container-fluid px-4 pb-4 bg-light-grey">
+<div id="post_container" class="container-fluid px-4 pb-4 bg-light-grey">
   {{#if posts}}
   {{#each posts as |post|}}
     {{>post post_all=false}}
@@ -26,3 +26,7 @@
   No posts yet.
   {{/if}}
 </div>
+<script src="/assets/js/publish-post.js"></script>
+{{#if posts}}
+<script src="/assets/js/delete-post.js"></script>
+{{/if}}

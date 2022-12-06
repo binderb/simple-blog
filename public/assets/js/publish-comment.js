@@ -1,4 +1,4 @@
-const post_comment = async (e) => {
+const publish_comment = async (e) => {
   e.preventDefault();
   const form_data = {
     post_id: document.querySelector('#comment-form').getAttribute('data-post-id'),
@@ -21,4 +21,4 @@ const post_comment = async (e) => {
   }
 }
 
-document.querySelector('#comment-form').addEventListener('submit',post_comment);
+document.querySelector('#comment-form').addEventListener('submit',publish_comment);

@@ -1,14 +1,25 @@
 const router = require('express').Router();
-const { Post } = require('../../models');
+const { Post, User } = require('../../models');
 const { withAuthAPI } = require('../../utils/auth');
 
 // Create 1 post
 router.post('/', withAuthAPI, async (req, res) => {
   try {
-    const new_post_data = await Post.create(req.body);
+    if (!req.body.title) {
+      res.status(403).json({message: 'Your title cannot be empty!'});
+      return;
+    } else if (!req.body.content) {
+      res.status(403).json({message: 'Your post content cannot be empty!'});
+      return;
+    }
+    const new_post_body = {
+      ...req.body,
+      user_id: req.session.user_id
+    }
+    const new_post_data = await Post.create(new_post_body);
     res.status(201).json(new_post_data);
   } catch (err) {
-    res.status(500).json({message: 'Internal Server Error'});
+    res.status(500).json({message: `Internal Server Error: ${err.name}`});
   }
 });
 
@@ -27,26 +38,35 @@ router.put('/:id', withAuthAPI, async (req, res) => {
     res.status(200).json({message: 'Post updated successfully'});
   
   } catch (err) {
-    res.status(500).json({message: 'Internal Server Error'});
+    res.status(500).json({message: `Internal Server Error: ${err.name}`});
   }
 });
 
 // Delete 1 post
 router.delete('/:id', withAuthAPI, async (req, res) => {
   try {
-    const delete_result = await Post.destroy({
-      where: {id: req.params.id}
+    // Make sure user is the author of the comment
+    const post_data = await Post.findByPk(req.params.id, {
+      include: [{model: User}]
     });
-
-    if (delete_result) {
+    if (!post_data) {
       res.status(404).json({message: 'Post with given ID not found!'});
       return;
     }
+    const post = post_data.get({plain:true});
+    if (req.session.user_id != post.user.id) {
+      res.status(401).json({message: 'Your user id does not match the author of the post you are trying to delete.'});
+      return;
+    }
 
-    res.status(200).json({message: 'Post deleted successfully'});
+    await Post.destroy({
+      where: {id: req.params.id}
+    });
+
+    res.status(200).json({message: 'Post deleted successfully.'});
   
   } catch (err) {
-    res.status(500).json({message: 'Internal Server Error'});
+    res.status(500).json({message: `Internal Server Error: ${err.name}`});
   }
 });
 

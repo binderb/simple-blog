@@ -37,6 +37,7 @@
           Comments
       </div>
     </div>
+    {{#if comments}}
     {{#each comments as |comment|}}
     <div class="row bg-light-grey m-2 p-3">
       <p class="mb-0 comment-content">
@@ -56,10 +57,13 @@
       {{/if}}
     </div>
     {{/each}}
+    {{else}}
+      No comments yet.
+    {{/if}}
   </div>
 </div>
 {{#if logged_in}}
-<script src="/assets/js/post-comment.js"></script>
+<script src="/assets/js/publish-comment.js"></script>
 <script src="/assets/js/delete-comment.js"></script>
 <script src="/assets/js/edit-comment.js"></script>
 {{/if}}
