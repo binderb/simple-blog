@@ -9,12 +9,11 @@ router.post('/', async (req, res) => {
       res.status(403).json({message: 'You must supply a username and password!'});
       return;
     }
-
     const new_user_data = await User.create(req.body);
+    req.session.logged_in = true;
+    req.session.user_id = new_user_data.id;
+    req.session.username = new_user_data.username;
     await req.session.save(() => {
-      req.session.logged_in = true;
-      req.session.user_id = new_user_data.id;
-      req.session.username = new_user_data.username;
       res.status(201).json({message: 'Profile created successfully!'});
     });
 
@@ -51,12 +50,11 @@ router.post('/login', async (req, res) => {
       res.status(403).json({message: 'Invalid username or password, please try again!'});
       return;
     }
-
-    await req.session.save(() => {
-      req.session.logged_in = true;
-      req.session.user_id = user_data.id;
-      req.session.username = user_data.username;
-      res.status(200).json({message: 'You are now logged in!'});
+    req.session.logged_in = true;
+    req.session.user_id = user_data.id;
+    req.session.username = user_data.username;
+    req.session.save(() => {
+      res.status(200).json({user_data, message: 'You are now logged in!'});
     });
   
   } catch (err) {

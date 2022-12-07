@@ -8,7 +8,6 @@ router.get('/', async (req, res) => {
     order: [['created','DESC']]
   });
   const posts = post_data.map(e => e.get({plain: true}));
-  console.log(req.session);
   res.render('homepage', {
     posts,
     logged_in: req.session.logged_in,
