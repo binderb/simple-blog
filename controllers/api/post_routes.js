@@ -26,15 +26,24 @@ router.post('/', withAuthAPI, async (req, res) => {
 // Update 1 post
 router.put('/:id', withAuthAPI, async (req, res) => {
   try {
-    const update_result = await Post.update(req.body, {
-      where: {id: req.params.id}
-    });
-
-    if (update_result[0] == 0) {
+    // Make sure user is the author of the post
+    const post_data = await Post.findByPk(req.params.id);
+    if (!post_data) {
       res.status(404).json({message: 'Post with given ID not found!'});
       return;
     }
-
+    const post = post_data.get({plain:true});
+    if (req.session.user_id != post.user_id) {
+      res.status(403).json({message: 'Your user id does not match the author of the post you are trying to update.'});
+      return;
+    }
+    const updated_post_body = {
+      ...req.body,
+      updated: new Date()
+    }
+    await Post.update(updated_post_body, {
+      where: {id: req.params.id}
+    });
     res.status(200).json({message: 'Post updated successfully'});
   
   } catch (err) {
@@ -45,17 +54,15 @@ router.put('/:id', withAuthAPI, async (req, res) => {
 // Delete 1 post
 router.delete('/:id', withAuthAPI, async (req, res) => {
   try {
-    // Make sure user is the author of the comment
-    const post_data = await Post.findByPk(req.params.id, {
-      include: [{model: User}]
-    });
+    // Make sure user is the author of the post
+    const post_data = await Post.findByPk(req.params.id);
     if (!post_data) {
       res.status(404).json({message: 'Post with given ID not found!'});
       return;
     }
     const post = post_data.get({plain:true});
-    if (req.session.user_id != post.user.id) {
-      res.status(401).json({message: 'Your user id does not match the author of the post you are trying to delete.'});
+    if (req.session.user_id != post.user_id) {
+      res.status(403).json({message: 'Your user id does not match the author of the post you are trying to delete.'});
       return;
     }
 

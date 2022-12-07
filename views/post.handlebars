@@ -1,18 +1,23 @@
-<div class="container-fluid bg-light">
+<div class="container-fluid bg-light p-0">
   <a href="/" class="link-dark m-2 mb-0 d-block">&larr; Back</a>
-  <div class="container-fluid p-2">
+  <div class="container-fluid m-0 mt-2 p-4 bg-light-grey">
     <h2 class="col-12 text-dark fw-bold">
       {{ title }}
     </h2>
     <div class="col-12 d-flex small-text">
       posted by&nbsp;<b>{{ user.username }}</b>&nbsp;on {{ format_datetime created }}
     </div>
+    {{#if updated}}
+    <div class="col-12 d-flex small-text">
+      updated {{ format_datetime updated }}
+    </div>
+    {{/if}}
     <p class="p-2 pt-4 m-0">
       {{ content }}
     </p>
   </div>
   {{#if logged_in}}
-  <div class="container-fluid p-2">
+  <div class="container-fluid p-2 pt-4">
     <div class="row">
       <div class="col-12 fs-5 fw-bold">
           Add a Comment

@@ -68,6 +68,34 @@ router.get('/dashboard', withAuthView, async (req, res) => {
   });
 });
 
+router.get('/edit/:id', withAuthView, async (req, res) => {
+  try {
+    const post_data = await Post.findByPk(req.params.id);
+    if (!post_data) {
+      res.status(404).render('404',{
+        logged_in: req.session.logged_in,
+        user_id: req.session.user_id,
+        username: req.session.username
+      });
+      return;
+    }
+    const post = post_data.get({plain: true});
+    if (req.session.user_id != post.user_id) {
+      res.status(403).redirect('/');
+      return;
+    }
+    const render_obj = {
+      ...post,
+      logged_in: req.session.logged_in,
+      user_id: req.session.user_id,
+      username: req.session.username
+    }
+    res.render('edit', render_obj);
+  } catch (err) {
+    res.status(500).json({message: `Internal Server Error: ${err.name}`});
+  }
+});
+
 router.get('/login', async (req, res) => {
   if (req.session.logged_in) {
     res.redirect('/');

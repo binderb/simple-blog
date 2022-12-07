@@ -1,7 +1,7 @@
 <div class="container-fluid p-2">
   <div class="row p-2 justify-content-between align-items-center bg-dark text-white rounded-top">
     <div class="col-12 col-sm-6 pt-2 pb-1 py-sm-0 d-flex align-items-center">
-    <a href="/post/{{ id }}" class="fs-5 link-light fw-bold text-decoration-none">
+    <a href="/post/{{ id }}" class="fs-5 link-light fw-bold text-decoration-none post-title">
       {{ title }}
     </a>
     </div>
@@ -18,14 +18,14 @@
   {{else}}
   <div class="row p-2 bg-light border-dark border-start border-end border-bottom border-2">
   {{/if}}
-    <p class="m-0 text-truncate">
+    <p class="m-0 text-truncate post-content">
       {{ content }}
     </p>
   </div>
   {{#unless post_all}}
   <div class="row p-2 bg-light rounded-bottom border-dark border-start border-end border-bottom border-2">
     <div class="d-flex justify-content-start">
-    <button class="me-1 btn btn-sm btn-secondary edit" data-post-id="{{id}}"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</button>
+    <a class="me-1 btn btn-sm btn-secondary edit" href="/edit/{{id}}"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</a>
     <button class="ms-1 btn btn-sm btn-secondary delete" data-post-id="{{id}}"><i class="fa-solid fa-xmark"></i>&nbsp;Delete</button>
     </div>
   </div>
