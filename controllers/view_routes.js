@@ -39,6 +39,7 @@ router.get('/post/:id', async (req, res) => {
     const post = post_data.get({plain: true});
     const render_obj = {
       ...post,
+      context: req.query.context,
       logged_in: req.session.logged_in,
       user_id: req.session.user_id,
       username: req.session.username

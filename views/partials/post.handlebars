@@ -1,15 +1,15 @@
 <div class="container-fluid p-2">
   <div class="row p-2 justify-content-between align-items-center bg-dark text-white rounded-top">
     <div class="col-12 col-sm-6 pt-2 pb-1 py-sm-0 d-flex align-items-center">
-    <a href="/post/{{ id }}" class="fs-5 link-light fw-bold text-decoration-none post-title">
-      {{ title }}
+    <a href="/post/{{id}}?context={{#if post_all}}/{{else}}/dashboard{{/if}}" class="fs-5 link-light fw-bold text-decoration-none post-title">
+      {{title}}
     </a>
     </div>
     <div class="col-12 col-sm-6 pt-1 pb-2 py-sm-0 small-text text-start text-sm-end">
       {{#if post_all}}
-      posted by&nbsp;<b>{{ user.username }}</b>&nbsp;on {{ format_datetime created }}
+      posted by&nbsp;<b>{{user.username}}</b>&nbsp;on {{format_datetime created}}
       {{else}}
-      posted on {{ format_datetime created }}
+      posted on {{format_datetime created}}
       {{/if}}
     </div>
   </div>
@@ -19,7 +19,7 @@
   <div class="row p-2 bg-light border-dark border-start border-end border-bottom border-2">
   {{/if}}
     <p class="m-0 text-truncate post-content">
-      {{ content }}
+      {{content}}
     </p>
   </div>
   {{#unless post_all}}
