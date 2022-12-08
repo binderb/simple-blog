@@ -10,13 +10,15 @@
         <div class="col-12 p-4">
           <form id="login-signup-form">
             <div class="mb-3">
-              <label for="username" class="form-label">Username</label>
+              <label for="username" class="form-label fw-bold">Username:</label>
               <input type="text" class="form-control" id="username">
             </div>
             <div class="mb-3">
-              <label for="password" class="form-label">Password</label>
+              <label for="password" class="form-label fw-bold">Password:</label>
               <input type="password" class="form-control" id="password">
+              {{#unless active_login}}
               <div id="password_help" class="form-text">Passwords must be at least 8 characters.</div>
+              {{/unless}}
             </div>
             {{#if active_login}}
             <div class="mb-3">
