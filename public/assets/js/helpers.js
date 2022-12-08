@@ -1,7 +1,7 @@
 const helpers = {
   build_post_edit_box: (title, cancel_string, cancel_function, submit_string, submit_function) => {
     const edit_box = document.createElement('div');
-    edit_box.setAttribute('class','p-3 mb-3 bg-light border border-dark border-2 rounded edit-box');
+    edit_box.setAttribute('class','p-3 mb-3 bg-light rounded edit-box');
     const title_element = document.createElement('h5');
     title_element.textContent = title;
     title_element.setAttribute('class','pb-2 fw-bold');

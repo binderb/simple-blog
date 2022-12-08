@@ -1,13 +1,83 @@
 :root {
-
-  --button-glass: #FFFFFF33;
-  --input-glass: #FFFFFF55;
   
   --grey-light: #d6d6d6;
+  --background: #e0dbca;
+  --palette-secondary: #1C6E8C;
+  --palette-secondary-highlight: #277e9e;
+  --palette-secondary-disabled: #7398a5;
+  --palette-dark: #274156;
+  --palette-text-dark: #243b51;
+  --palette-dark-highlight: #3a5a75;
+  --palette-light: #e0dbca;
+  --palette-light-grey: #afa598;
+  --palette-danger: #771212;
+
+}
+
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  background-color: var(--background);
+  color: var(--palette-text-dark) !important;
+}
+
+.form-text {
+  color: var(--palette-secondary) !important;
+}
+
+.text-danger.form-text {
+  color: var(--palette-danger) !important;
+}
+
+.bg-light {
+  background-color: var(--palette-light) !important;
+}
+
+.link-light,.text-light {
+  color: var(--palette-light) !important;
+}
+
+.bg-secondary {
+  background-color: var(--palette-secondary) !important;
+}
+
+.btn-secondary {
+  --bs-btn-bg: var(--palette-secondary) !important;
+  --bs-btn-border-color: var(--palette-secondary) !important;
+  --bs-btn-hover-bg: var(--palette-secondary-highlight) !important;
+  --bs-btn-hover-border-color: var(--palette-secondary-highlight) !important;
+  --bs-btn-disabled-bg: var(--palette-secondary-disabled) !important;
+  --bs-btn-disabled-border-color: var(--palette-secondary-disabled) !important;
+}
+
+.border-secondary {
+  border-color: var(--palette-secondary) !important;
+}
+
+.bg-dark {
+  background-color: var(--palette-dark) !important;
+}
+
+.text-dark {
+  color: var(--palette-text-dark) !important;
+}
+
+.link-dark {
+  color: var(--palette-dark) !important;
+}
+
+.btn-dark {
+  --bs-btn-bg: var(--palette-dark) !important;
+  --bs-btn-border-color: var(--palette-dark) !important;
+  --bs-btn-hover-bg: var(--palette-dark-highlight) !important;
+  --bs-btn-hover-border-color: var(--palette-dark-highlight) !important;
+}
+
+.border-dark {
+  border-color: var(--palette-dark) !important;
 }
 
 .bg-light-grey {
-  background-color: var(--grey-light);
+  background-color: var(--palette-light-grey);
 }
 
 .small-text {

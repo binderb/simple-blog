@@ -5,7 +5,7 @@
       {{title}}
     </a>
     </div>
-    <div class="col-12 col-sm-6 pt-1 pb-2 py-sm-0 small-text text-start text-sm-end">
+    <div class="col-12 col-sm-6 pt-1 pb-2 py-sm-0 small-text text-start text-sm-end text-light">
       {{#if post_all}}
       posted by&nbsp;<b>{{user.username}}</b>&nbsp;on {{format_datetime created}}
       {{else}}
@@ -14,16 +14,17 @@
     </div>
   </div>
   {{#if post_all}}
-  <div class="row p-2 bg-light rounded-bottom border-dark border-start border-end border-bottom border-2">
+  <div class="row p-2 bg-light rounded-bottom">
   {{else}}
-  <div class="row p-2 bg-light border-dark border-start border-end border-bottom border-2">
+  <div class="row p-2 pb-0 bg-light">
   {{/if}}
     <p class="m-0 text-truncate post-content">
       {{content}}
     </p>
   </div>
   {{#unless post_all}}
-  <div class="row p-2 bg-light rounded-bottom border-dark border-start border-end border-bottom border-2">
+  <div class="row p-2 pt-0 bg-light rounded-bottom">
+    <hr class="my-2">
     <div class="d-flex justify-content-start">
     <a class="me-1 btn btn-sm btn-secondary edit" href="/edit/{{id}}"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</a>
     <button class="ms-1 btn btn-sm btn-secondary delete" data-post-id="{{id}}"><i class="fa-solid fa-xmark"></i>&nbsp;Delete</button>
