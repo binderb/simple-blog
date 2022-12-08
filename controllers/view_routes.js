@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { User, Post, Comment } = require('../models');
 const { withAuthView } = require('../utils/auth');
 
+// Display homepage
 router.get('/', async (req, res) => {
   const post_data = await Post.findAll({
     include: [{model: User}],
@@ -17,6 +18,7 @@ router.get('/', async (req, res) => {
   });
 });
 
+// Display single post (and comments)
 router.get('/post/:id', async (req, res) => {
   try {
     const post_data = await Post.findByPk(req.params.id, {
@@ -50,6 +52,7 @@ router.get('/post/:id', async (req, res) => {
   }
 });
 
+// Display user dashboard
 router.get('/dashboard', withAuthView, async (req, res) => {
   const posts_data = await Post.findAll({
     where: {
@@ -69,6 +72,7 @@ router.get('/dashboard', withAuthView, async (req, res) => {
   });
 });
 
+// Display post editor
 router.get('/edit/:id', withAuthView, async (req, res) => {
   try {
     const post_data = await Post.findByPk(req.params.id);
@@ -97,6 +101,7 @@ router.get('/edit/:id', withAuthView, async (req, res) => {
   }
 });
 
+// Display login page
 router.get('/login', async (req, res) => {
   if (req.session.logged_in) {
     res.redirect('/');
@@ -107,6 +112,7 @@ router.get('/login', async (req, res) => {
   });
 });
 
+// Display signup page
 router.get('/signup', async (req, res) => {
   if (req.session.logged_in) {
     res.redirect('/');

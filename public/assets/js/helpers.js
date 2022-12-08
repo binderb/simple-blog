@@ -1,4 +1,6 @@
 const helpers = {
+  // This helper method dynamically constructs 
+  // the post editor box that is used on the user dashboard.
   build_post_edit_box: (title, cancel_string, cancel_function, submit_string, submit_function) => {
     const edit_box = document.createElement('div');
     edit_box.setAttribute('class','p-3 mb-3 bg-light rounded edit-box');

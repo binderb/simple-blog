@@ -1,3 +1,9 @@
+// This code dynamically generates HTML content
+// so that the comment editor interface is available
+// without the need to reload the page.
+//
+// Thus, there are several methods defined.
+
 const show_edits = async (e) => {
   e.preventDefault();
   const link_box = e.target.parentElement;

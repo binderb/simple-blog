@@ -1,3 +1,9 @@
+// This code dynamically generates HTML content
+// so that the post creator interface is available
+// without the need to reload the page.
+//
+// Thus, there are several methods defined.
+
 const show_new_post = async (e) => {
   e.preventDefault();
   e.target.setAttribute('disabled','true');
