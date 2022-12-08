@@ -18,7 +18,7 @@ const save_updates = async (e) => {
     document.location.replace('/404');
   } else {
     const response_json = await response.json();
-    alert(`${response.status}: ${response.statusText}\n${response_json.message}`);
+    document.querySelector('#err').textContent = response_json.message;
   }
 }
 

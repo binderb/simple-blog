@@ -26,6 +26,13 @@ router.post('/', withAuthAPI, async (req, res) => {
 // Update 1 post
 router.put('/:id', withAuthAPI, async (req, res) => {
   try {
+    if (!req.body.title) {
+      res.status(403).json({message: 'Your title cannot be empty!'});
+      return;
+    } else if (!req.body.content) {
+      res.status(403).json({message: 'Your post content cannot be empty!'});
+      return;
+    }
     // Make sure user is the author of the post
     const post_data = await Post.findByPk(req.params.id);
     if (!post_data) {

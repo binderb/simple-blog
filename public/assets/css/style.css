@@ -24,7 +24,7 @@ body {
   color: var(--palette-secondary) !important;
 }
 
-.text-danger.form-text {
+.text-danger, .text-danger.form-text {
   color: var(--palette-danger) !important;
 }
 

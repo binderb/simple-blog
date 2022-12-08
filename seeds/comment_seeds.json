@@ -5,8 +5,13 @@
     "post_id" : 1
   },
   {
-    "content" : "This is extremely relevant and interesting.",
+    "content" : "This is extremely cool and interesting.",
     "user_id" : 4,
+    "post_id" : 2
+  },
+  {
+    "content" : "I agree, fascinating!",
+    "user_id" : 3,
     "post_id" : 2
   }
 
